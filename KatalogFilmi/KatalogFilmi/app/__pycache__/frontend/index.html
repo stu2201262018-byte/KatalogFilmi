@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <title>Каталог с филми</title>
+  <style>
+    body { font-family: Arial; max-width: 800px; margin: 30px auto; }
+    h1 { text-align: center; color: #333; }
+    form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+    input, textarea { padding: 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; border-radius: 5px; }
+    button:hover { background: #0056b3; }
+    .movie { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 6px; background: #f9f9f9; }
+    #message { text-align: center; color: green; font-weight: bold; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🎬 Каталог с филми</h1>
+
+  <div id="message"></div>
+
+  <form id="movieForm">
+    <input type="text" id="title" placeholder="Заглавие" required />
+    <input type="number" id="year" placeholder="Година" required />
+    <input type="text" id="genre" placeholder="Жанр" required />
+    <textarea id="description" placeholder="Описание" rows="3"></textarea>
+    <button type="submit">Добави филм</button>
+  </form>
+
+  <h2>Всички филми</h2>
+  <div id="moviesList"></div>
+
+  <script>
+async function loadMovies() {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/api/movies');
+        const movies = await response.json();
+        const list = document.getElementById('movies-list');
+        list.innerHTML = '';
+
+        movies.forEach(movie => {
+            const li = document.createElement('li');
+            li.textContent = `${movie.title} (${movie.year}) - Rating: ${movie.rating}`;
+            list.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading movies:', error);
+        const list = document.getElementById('movies-list');
+        list.innerHTML = '<li>Неуспешно зареждане на филмите.</li>';
+    }
+}
+
+loadMovies();
+</script>
+</body>
+</html>

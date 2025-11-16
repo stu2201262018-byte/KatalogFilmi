@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>🎬 Филмов Каталог</title>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎬 Филмов Каталог</h1>
+                <p>Управление на твоята колекция от филми</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Add Movie Form -->
+            <section class="add-movie-section">
+                <div class="form-card">
+                    <h2>➕ Добави нов филм</h2>
+                    <form id="movieForm" class="movie-form">
+                        <div class="form-group">
+                            <label for="title">Заглавие</label>
+                            <input type="text" id="title" placeholder="Напиши заглавието на филма" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="year">Година</label>
+                                <input type="number" id="year" placeholder="2024" min="1900" max="2100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">Жанр</label>
+                                <input type="text" id="genre" placeholder="Напр. Драма, Комедия" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Добави филм</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Movies List -->
+            <section class="movies-section">
+                <div class="section-header">
+                    <h2>🎞️ Моите филми</h2>
+                    <div class="filters">
+                        <input type="text" id="searchInput" placeholder="Търси филм..." class="search-box">
+                        <select id="genreFilter" class="filter-select">
+                            <option value="">Всички жанрове</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="moviesContainer" class="movies-grid">
+                    <div class="loading">Зареждане на филмите...</div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Изготвила: Станислава Петрова, ФН 2201262021</p>
+        </footer>
+    </div>
+
+    <!-- Movie Card Modal (за редакция) -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Редактирай филма</h2>
+            <form id="editForm" class="movie-form">
+                <div class="form-group">
+                    <label for="editTitle">Заглавие</label>
+                    <input type="text" id="editTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editYear">Година</label>
+                    <input type="number" id="editYear" required>
+                </div>
+                <div class="form-group">
+                    <label for="editGenre">Жанр</label>
+                    <input type="text" id="editGenre" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Запази промените</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
